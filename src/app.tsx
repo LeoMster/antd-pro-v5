@@ -1,11 +1,13 @@
+import { message } from 'antd'
 import type { Settings as LayoutSettings } from '@ant-design/pro-layout';
 import { PageLoading } from '@ant-design/pro-layout';
-import type { RunTimeLayoutConfig } from 'umi';
+import type { RequestConfig, RunTimeLayoutConfig } from 'umi';
 import { history, Link } from 'umi';
 import RightContent from '@/components/RightContent';
 import Footer from '@/components/Footer';
 import { currentUser as queryCurrentUser } from './services/ant-design-pro/api';
 import { BookOutlined, LinkOutlined } from '@ant-design/icons';
+import type { ResponseError } from 'umi-request';
 
 const isDev = process.env.NODE_ENV === 'development';
 const loginPath = '/user/login';
@@ -80,4 +82,46 @@ export const layout: RunTimeLayoutConfig = ({ initialState }) => {
     // unAccessible: <div>unAccessible</div>,
     ...initialState?.settings,
   };
+};
+
+const errorHandler = (error: ResponseError) => {
+  switch (error.name) {
+    case 'BizError':
+      if (error.data.message) {
+        message.error({
+          content: error.data.message,
+          key: 'process',
+          duration: 2,
+        });
+      } else {
+        message.error({
+          content: 'Business Error, please try again',
+          key: 'process',
+          duration: 2,
+        });
+      }
+      break;
+    case 'ResponseError':
+      message.error({
+        content: `${error.response.status} ${error.response.statusText}`,
+        key: 'process',
+        duration: 2,
+      });
+      break;
+    case 'TypeError': 
+      message.error({
+        content: 'Network Error, please try again',
+        key: 'process',
+        duration: 2,
+      })
+      break;
+    default:
+      break;
+  }
+  
+  throw error;
+};
+
+export const request: RequestConfig = {
+  errorHandler,
 };
