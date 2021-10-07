@@ -4,7 +4,7 @@ import { useRequest } from 'umi';
 import moment from 'moment';
 import FormBuilder from '../builders/FormBuilder';
 import ActionBuilder from '../builders/ActionBuilder';
-import { setFieldsAdaptor, submitFieldsAdaptor } from '../helper'
+import { setFieldsAdaptor, submitFieldsAdaptor } from '../helper';
 
 const Modal = ({
   modalVisible,

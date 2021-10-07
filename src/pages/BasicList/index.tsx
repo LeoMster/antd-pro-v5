@@ -1,21 +1,29 @@
 import { useState, useEffect } from 'react';
 import {
+  Button,
   Card,
   Col,
+  Form,
+  InputNumber,
   Modal as AntdModal,
   message,
   Pagination,
   Row,
   Space,
   Table,
+  Tooltip,
 } from 'antd';
-import { ExclamationCircleOutlined } from '@ant-design/icons';
+import { ExclamationCircleOutlined, SearchOutlined } from '@ant-design/icons';
 import { PageContainer, FooterToolbar } from '@ant-design/pro-layout';
-import { useRequest, useIntl } from 'umi';
-import { useSessionStorageState } from 'ahooks';
+import QueueAnim from 'rc-queue-anim';
+import { useRequest, useIntl, history } from 'umi';
+import { useSessionStorageState, useToggle } from 'ahooks';
+import { stringify } from 'query-string';
 import ColumnBuilder from './builders/ColumnBuilder';
 import ActionBuilder from './builders/ActionBuilder';
+import SearchBuilder from './builders/SearchBuilder';
 import Modal from './components/Modal'
+import { submitFieldsAdaptor } from './helper'
 import styles from './index.less';
 
 const BasicList = () => {
@@ -28,10 +36,24 @@ const BasicList = () => {
     'basicListTableColumns', 
     [],
   );
+  const [searchVisible, searchAction] = useToggle(false);
   const lang = useIntl();
+  const [searchForm] = Form.useForm();
 
   const init = useRequest<{ data: BasicListApi.ListData }>(
-    `https://public-api-v2.aspirantzhang.com/api/admins?X-API-KEY=antd${pageQuery}`
+    (values: any) => {
+      return {
+        url: `https://public-api-v2.aspirantzhang.com/api/admins?X-API-KEY=antd${pageQuery}`,
+        params: values,
+        paramsSerializer: (params: any) => {
+          return stringify(params, {
+            arrayFormat: 'comma',
+            skipEmptyString: true,
+            skipNull: true,
+          });
+        },
+      };
+    }
   );
   const request = useRequest(
     (values: any) => {
@@ -84,12 +106,19 @@ const BasicList = () => {
           })
         );
         break;
+      case 'page': {
+        const uri = (action.uri || '').replace(/:\w+/g, (field) => {
+          return record[field.replace(':', '')];
+        });
+        history.push(`/basic-list${uri}`);
+        break;
+      }
       case 'reload':
         init.run();
         break;
       case 'delete':
       case 'deletePermanently':
-      case 'restore':
+      case 'restore': {
         const operationName = lang.formatMessage({
           id: `basic-list.list.actionHandler.operation.${action.action}`
         });
@@ -114,6 +143,7 @@ const BasicList = () => {
           },
         });
         break;
+      }
       default:
         break;
     }
@@ -148,8 +178,48 @@ const BasicList = () => {
       setSelectedRows(_selectRows);
     },
   };
+
+  const onFinish = (value: any) => {
+    init.run(submitFieldsAdaptor(value));
+  }
   
-  const searchLayout = () => {};
+  const searchLayout = () => {
+    return searchVisible && (
+      <QueueAnim type='top'>
+        <div key='searchForm'>
+          <Card className={styles.searchForm} key='searchForm'>
+            <Form form={searchForm} onFinish={onFinish}>
+              <Row gutter={24}>
+                <Col sm={6}>
+                  <Form.Item label='ID' name='id' key='id'>
+                    <InputNumber style={{ width: '100%' }} />
+                  </Form.Item>
+                </Col>
+                {SearchBuilder(init.data?.layout.tableColumn)}
+              </Row>
+              <Row>
+                <Col sm={24} className={styles.textAlignRight}>
+                  <Space>
+                    <Button type='primary' htmlType='submit'>
+                      Submit
+                    </Button>
+                    <Button
+                      onClick={() => {
+                        init.run();
+                        searchForm.resetFields();
+                      }}
+                    >
+                      Clear
+                    </Button>
+                  </Space>
+                </Col>
+              </Row>
+            </Form>
+          </Card>
+        </div>
+      </QueueAnim>
+    );
+  };
 
   const beforeTableLayout = () => {
     return (
@@ -159,7 +229,19 @@ const BasicList = () => {
         </Col>
         <Col xs={24} sm={12} className={styles.tableToolBar}>
           <Space>
-            {ActionBuilder(init?.data?.layout?.tableToolBar, actionHandler, false)}
+            <Tooltip title='search'>
+              <Button
+                shape='circle'
+                icon={<SearchOutlined />}
+                onClick={() => searchAction.toggle()}
+                type={searchVisible ? 'primary' : 'default'}
+              />
+            </Tooltip>
+            {ActionBuilder(
+              init?.data?.layout?.tableToolBar,
+              actionHandler,
+              false
+            )}
           </Space>
         </Col>
       </Row>

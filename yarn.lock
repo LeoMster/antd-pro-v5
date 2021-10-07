@@ -4720,9 +4720,9 @@ commander@*, commander@>=7.0.0:
   resolved "https://registry.nlark.com/commander/download/commander-8.2.0.tgz?cache=0&sync_timestamp=1631257318022&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fcommander%2Fdownload%2Fcommander-8.2.0.tgz#37fe2bde301d87d47a53adeff8b5915db1381ca8"
   integrity sha1-N/4r3jAdh9R6U63v+LWRXbE4HKg=
 
-commander@^2.18.0, commander@^2.19.0, commander@^2.20.0:
+commander@2, commander@^2.18.0, commander@^2.19.0, commander@^2.20.0:
   version "2.20.3"
-  resolved "https://registry.nlark.com/commander/download/commander-2.20.3.tgz?cache=0&sync_timestamp=1631257318022&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fcommander%2Fdownload%2Fcommander-2.20.3.tgz#fd485e84c03eb4881c20722ba48035e8531aeb33"
+  resolved "http://npm.iwellmass.com:80/commander/-/commander-2.20.3.tgz#fd485e84c03eb4881c20722ba48035e8531aeb33"
   integrity sha1-/UhehMA+tIgcIHIrpIA16FMa6zM=
 
 commander@^5.1.0:
@@ -5165,6 +5165,16 @@ csstype@^3.0.2:
   version "3.0.9"
   resolved "https://registry.nlark.com/csstype/download/csstype-3.0.9.tgz?cache=0&sync_timestamp=1631540782346&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fcsstype%2Fdownload%2Fcsstype-3.0.9.tgz#6410af31b26bd0520933d02cbc64fce9ce3fbf0b"
   integrity sha1-ZBCvMbJr0FIJM9AsvGT86c4/vws=
+
+d3-array@^1.2.0:
+  version "1.2.4"
+  resolved "http://npm.iwellmass.com:80/d3-array/-/d3-array-1.2.4.tgz#635ce4d5eea759f6f605863dbcfc30edc737f71f"
+  integrity sha1-Y1zk1e6nWfb2BYY9vPww7cc39x8=
+
+d3-polygon@^1.0.3:
+  version "1.0.6"
+  resolved "http://npm.iwellmass.com:80/d3-polygon/-/d3-polygon-1.0.6.tgz#0bf8cb8180a6dc107f518ddf7975e12abbfbd38e"
+  integrity sha512-k+RF7WvI08PC8reEoXa/w2nSg5AUMTi+peBD9cmFc+0ixHfbs4QmxxkarVal1IkVkgxVuk9JSHhJURHiyHKAuQ==
 
 d@1, d@^1.0.1:
   version "1.0.1"
@@ -5617,6 +5627,11 @@ dva@^2.6.0-beta.20:
     react-redux "^7.1.0"
     react-router-dom "^5.1.2"
     redux "^4.0.1"
+
+earcut@^2.1.1:
+  version "2.2.3"
+  resolved "http://npm.iwellmass.com:80/earcut/-/earcut-2.2.3.tgz#d44ced2ff5a18859568e327dd9c7d46b16f55cf4"
+  integrity sha1-1EztL/WhiFlWjjJ92cfUaxb1XPQ=
 
 ecc-jsbn@~0.1.1:
   version "0.1.2"
@@ -6715,6 +6730,18 @@ flatten@^1.0.2:
   version "1.0.3"
   resolved "https://registry.nlark.com/flatten/download/flatten-1.0.3.tgz?cache=0&sync_timestamp=1628993216184&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fflatten%2Fdownload%2Fflatten-1.0.3.tgz#c1283ac9f27b368abc1e36d1ff7b04501a30356b"
   integrity sha1-wSg6yfJ7Noq8HjbR/3sEUBowNWs=
+
+flubber@^0.4.2:
+  version "0.4.2"
+  resolved "http://npm.iwellmass.com:80/flubber/-/flubber-0.4.2.tgz#14452d4a838cc3b9f2fb6175da94e35acd55fbaa"
+  integrity sha1-FEUtSoOMw7ny+2F12pTjWs1V+6o=
+  dependencies:
+    d3-array "^1.2.0"
+    d3-polygon "^1.0.3"
+    earcut "^2.1.1"
+    svg-path-properties "^0.2.1"
+    svgpath "^2.2.1"
+    topojson-client "^3.0.0"
 
 for-each@^0.3.3:
   version "0.3.3"
@@ -11755,6 +11782,16 @@ query-string@^6.11.0, query-string@^6.13.8:
     split-on-first "^1.0.0"
     strict-uri-encode "^2.0.0"
 
+query-string@^7.0.1:
+  version "7.0.1"
+  resolved "http://npm.iwellmass.com:80/query-string/-/query-string-7.0.1.tgz#45bd149cf586aaa582dffc7ec7a8ad97dd02f75d"
+  integrity sha1-Rb0UnPWGqqWC3/x+x6itl90C910=
+  dependencies:
+    decode-uri-component "^0.2.0"
+    filter-obj "^1.1.0"
+    split-on-first "^1.0.0"
+    strict-uri-encode "^2.0.0"
+
 querystring-browser@^1.0.4:
   version "1.0.4"
   resolved "https://registry.npm.taobao.org/querystring-browser/download/querystring-browser-1.0.4.tgz#f2e35881840a819bc7b1bf597faf0979e6622dc6"
@@ -12071,6 +12108,14 @@ rc-progress@~3.1.0:
   dependencies:
     "@babel/runtime" "^7.10.1"
     classnames "^2.2.6"
+
+rc-queue-anim@^2.0.0:
+  version "2.0.0"
+  resolved "http://npm.iwellmass.com:80/rc-queue-anim/-/rc-queue-anim-2.0.0.tgz#e78cf9c0f333cb41327e9ed603357f156d0ddce2"
+  integrity sha1-54z5wPMzy0Eyfp7WAzV/FW0N3OI=
+  dependencies:
+    "@babel/runtime" "^7.11.1"
+    tween-one "^1.0.52"
 
 rc-rate@~2.9.0:
   version "2.9.1"
@@ -14298,6 +14343,11 @@ style-to-object@^0.3.0:
   dependencies:
     inline-style-parser "0.1.1"
 
+style-utils@^0.3.0:
+  version "0.3.4"
+  resolved "http://npm.iwellmass.com:80/style-utils/-/style-utils-0.3.4.tgz#ff407c360d3b5c1a0971279586e39ce27251064f"
+  integrity sha1-/0B8Ng07XBoJcSeVhuOc4nJRBk8=
+
 stylelint-config-css-modules@^2.2.0:
   version "2.2.0"
   resolved "https://registry.npm.taobao.org/stylelint-config-css-modules/download/stylelint-config-css-modules-2.2.0.tgz#8ed2a54b1bdf637219e37cdeea1950405fd022ff"
@@ -14428,10 +14478,25 @@ supports-hyperlinks@^2.0.0:
     has-flag "^4.0.0"
     supports-color "^7.0.0"
 
+svg-path-properties@^0.2.1:
+  version "0.2.2"
+  resolved "http://npm.iwellmass.com:80/svg-path-properties/-/svg-path-properties-0.2.2.tgz#b073d81be7292eae0e233ab8a83f58dc27113296"
+  integrity sha1-sHPYG+cpLq4OIzq4qD9Y3CcRMpY=
+
+svg-path-properties@^1.0.4:
+  version "1.0.11"
+  resolved "http://npm.iwellmass.com:80/svg-path-properties/-/svg-path-properties-1.0.11.tgz#d804b77dea286ddd56bd182548b9c4f5980dcf83"
+  integrity sha1-2AS3feoobd1WvRglSLnE9ZgNz4M=
+
 svg-tags@^1.0.0:
   version "1.0.0"
   resolved "https://registry.npm.taobao.org/svg-tags/download/svg-tags-1.0.0.tgz#58f71cee3bd519b59d4b2a843b6c7de64ac04764"
   integrity sha1-WPcc7jvVGbWdSyqEO2x95krAR2Q=
+
+svgpath@^2.2.1:
+  version "2.3.1"
+  resolved "http://npm.iwellmass.com:80/svgpath/-/svgpath-2.3.1.tgz#b102334bebd2244b4818460ba2ebad52716a0d43"
+  integrity sha1-sQIzS+vSJEtIGEYLouutUnFqDUM=
 
 swagger-client@^3.16.1:
   version "3.16.1"
@@ -14773,6 +14838,13 @@ toidentifier@1.0.0:
   resolved "https://registry.npm.taobao.org/toidentifier/download/toidentifier-1.0.0.tgz#7e1be3470f1e77948bc43d94a3c8f4d7752ba553"
   integrity sha1-fhvjRw8ed5SLxD2Uo8j013UrpVM=
 
+topojson-client@^3.0.0:
+  version "3.1.0"
+  resolved "http://npm.iwellmass.com:80/topojson-client/-/topojson-client-3.1.0.tgz#22e8b1ed08a2b922feeb4af6f53b6ef09a467b99"
+  integrity sha1-Iuix7QiiuSL+60r29Ttu8JpGe5k=
+  dependencies:
+    commander "2"
+
 tough-cookie@^2.3.3, tough-cookie@^2.5.0, tough-cookie@~2.5.0:
   version "2.5.0"
   resolved "https://registry.nlark.com/tough-cookie/download/tough-cookie-2.5.0.tgz#cd9fb2a0aa1d5a12b473bd9fb96fa3dcff65ade2"
@@ -14865,10 +14937,22 @@ tunnel-agent@^0.6.0:
   dependencies:
     safe-buffer "^5.0.1"
 
-tween-functions@^1.0.1:
+tween-functions@^1.0.1, tween-functions@^1.2.0:
   version "1.2.0"
-  resolved "https://registry.npm.taobao.org/tween-functions/download/tween-functions-1.2.0.tgz#1ae3a50e7c60bb3def774eac707acbca73bbc3ff"
+  resolved "http://npm.iwellmass.com:80/tween-functions/-/tween-functions-1.2.0.tgz#1ae3a50e7c60bb3def774eac707acbca73bbc3ff"
   integrity sha1-GuOlDnxguz3vd06scHrLynO7w/8=
+
+tween-one@^1.0.52:
+  version "1.0.54"
+  resolved "http://npm.iwellmass.com:80/tween-one/-/tween-one-1.0.54.tgz#713844a331a0863befab257f793e99ef10ca975c"
+  integrity sha1-cThEozGghjvvqyV/eT6Z7xDKl1w=
+  dependencies:
+    "@babel/runtime" "^7.11.1"
+    flubber "^0.4.2"
+    raf "^3.4.1"
+    style-utils "^0.3.0"
+    svg-path-properties "^1.0.4"
+    tween-functions "^1.2.0"
 
 tweetnacl@^0.14.3, tweetnacl@~0.14.0:
   version "0.14.5"
